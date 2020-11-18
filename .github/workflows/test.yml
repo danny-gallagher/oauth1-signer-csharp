@@ -16,20 +16,8 @@ jobs:
     
     strategy:
       matrix:
-        dotnet: [2.1.700, 2.1, 2.2, 3.0, 3.1]
+        dotnet: [3.1]
         include:
-          - dotnet: 2.1.700
-            mono: none
-            TEST_PROJECT: $NETCORE2_TEST_PROJECT
-          - dotnet: 2.1
-            mono: none
-            TEST_PROJECT: $NETCORE2_TEST_PROJECT
-          - dotnet: 2.2
-            mono: none
-            TEST_PROJECT: $NETCORE2_TEST_PROJECT
-          - dotnet: 3.0
-            mono: none
-            TEST_PROJECT: $NETCORE3_TEST_PROJECT
           - dotnet: 3.1
             mono: none
             TEST_PROJECT: $NETCORE3_TEST_PROJECT
