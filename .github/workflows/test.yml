@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     
     strategy:
-      fail-fast: true
       matrix:
         dotnet: [2.1.700, 2.1, 2.2, 3.0, 3.1]
         include:
@@ -45,3 +44,4 @@ jobs:
       run: |
         export PATH="$PATH:$HOME/.dotnet/tools"
         dotnet test ${{ matrix.TEST_PROJECT }} -c Release -l:"trx;LogFileName=tests.trx" -r:"bin/" /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:CoverletOutput="bin/coverage.xml"
+        dotnet publish $TEST_PROJECT -c Release
