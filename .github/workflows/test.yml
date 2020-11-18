@@ -41,12 +41,7 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1
-    - name: Install dependencies
-      run: | 
-        export PATH="$PATH:$HOME/.dotnet/tools"
-        dotnet restore
-        
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
     - name: Test
-      run: dotnet test $TEST_PROJECT -c Release -l:"trx;LogFileName=tests.trx" -r:"bin/" p:CollectCoverage=true p:CoverletOutputFormat="opencover" p:CoverletOutput="bin/coverage.xml"
+      run: |
+        export PATH="$PATH:$HOME/.dotnet/tools"
+        dotnet test $TEST_PROJECT -c Release -l:"trx;LogFileName=tests.trx" -r:"bin/" p:CollectCoverage=true p:CoverletOutputFormat="opencover" p:CoverletOutput="bin/coverage.xml"
