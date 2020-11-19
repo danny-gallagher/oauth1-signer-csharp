@@ -8,10 +8,6 @@ on:
 
 jobs:
   build:
-    env:
-      NETCORE2_TEST_PROJECT: Mastercard.Developer.OAuth1Signer.Tests/NetCore2/Mastercard.Developer.OAuth1Signer.Tests.NetCore2.csproj
-      TEST_RESULTS_PATH: ./Mastercard.Developer.OAuth1Signer.Tests/NetCore2/bin
-
     runs-on: ubuntu-latest
             
     steps:
@@ -31,6 +27,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        NETCORE2_TEST_PROJECT: Mastercard.Developer.OAuth1Signer.Tests/NetCore2/Mastercard.Developer.OAuth1Signer.Tests.NetCore2.csproj
+        TEST_RESULTS_PATH: ./Mastercard.Developer.OAuth1Signer.Tests/NetCore2/bin
       with:
         args: >
           -Dsonar.organization=mastercard
