@@ -19,7 +19,7 @@ jobs:
     - name: Test
       run: |
         export PATH="$PATH:$HOME/.dotnet/tools"
-        dotnet test $NETCORE2_TEST_PROJECT -c Release -l:"trx;LogFileName=tests.trx" -r:"bin/" /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:CoverletOutput="bin/coverage.xml"
+        dotnet test Mastercard.Developer.OAuth1Signer.Tests/NetCore2/Mastercard.Developer.OAuth1Signer.Tests.NetCore2.csproj -c Release -l:"trx;LogFileName=tests.trx" -r:"bin/" /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:CoverletOutput="bin/coverage.xml"
         dotnet publish $NETCORE2_TEST_PROJECT -c Release
         
     - name: SonarCloud
@@ -27,7 +27,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        NETCORE2_TEST_PROJECT: Mastercard.Developer.OAuth1Signer.Tests/NetCore2/Mastercard.Developer.OAuth1Signer.Tests.NetCore2.csproj
         TEST_RESULTS_PATH: ./Mastercard.Developer.OAuth1Signer.Tests/NetCore2/bin
       with:
         args: >
