@@ -16,9 +16,9 @@ jobs:
     
     strategy:
       matrix:
-        dotnet: [3.0]
+        dotnet: [3]
         include:
-          - dotnet: 3.0
+          - dotnet: 3
             mono: none
             TEST_PROJECT: $NETCORE3_TEST_PROJECT
             
