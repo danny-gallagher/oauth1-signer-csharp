@@ -38,3 +38,4 @@ jobs:
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
           -Dsonar.cs.vstest.reportsPaths=./Mastercard.Developer.OAuth1Signer.Tests/NetCore2/bin/tests.trx
           -Dsonar.cs.opencover.reportsPaths=./Mastercard.Developer.OAuth1Signer.Tests/NetCore2/bin/coverage.xml
+          -Dsonar.coverage.jacoco.xmlReportPaths=./Mastercard.Developer.OAuth1Signer.Tests/NetCore2/bin/coverage.xml
