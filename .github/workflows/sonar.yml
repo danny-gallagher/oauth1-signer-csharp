@@ -22,18 +22,17 @@ jobs:
         dotnet test Mastercard.Developer.OAuth1Signer.Tests/NetCore2/Mastercard.Developer.OAuth1Signer.Tests.NetCore2.csproj -c Release -l:"trx;LogFileName=tests.trx" -r:"bin/" /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:CoverletOutput="bin/coverage.xml"
         dotnet publish Mastercard.Developer.OAuth1Signer.Tests/NetCore2/Mastercard.Developer.OAuth1Signer.Tests.NetCore2.csproj -c Release
         
-    - name: SonarCloud
+    - name: Sonar
       uses: sonarsource/sonarcloud-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        TEST_RESULTS_PATH: ./Mastercard.Developer.OAuth1Signer.Tests/NetCore2/bin
       with:
         args: >
           -Dsonar.organization=mastercard
           -Dsonar.projectName=oauth1-signer-csharp
           -Dsonar.projectKey=Mastercard_oauth1-signer-csharp
           -Dsonar.host.url=https://sonarcloud.io 
-          -Dsonar.login=$SONAR_TOKEN
-          -Dsonar.cs.vstest.reportsPaths=$TEST_RESULTS_PATH/tests.trx
-          -Dsonar.cs.opencover.reportsPaths=$TEST_RESULTS_PATH/coverage.xml
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          -Dsonar.cs.vstest.reportsPaths=./Mastercard.Developer.OAuth1Signer.Tests/NetCore2/bin/tests.trx
+          -Dsonar.cs.opencover.reportsPaths=./Mastercard.Developer.OAuth1Signer.Tests/NetCore2/bin/coverage.xml
