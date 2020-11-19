@@ -37,6 +37,6 @@ jobs:
           -Dsonar.projectName=oauth1-signer-csharp
           -Dsonar.projectKey=Mastercard_oauth1-signer-csharp
           -Dsonar.host.url=https://sonarcloud.io 
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          -Dsonar.login=$SONAR_TOKEN
           -Dsonar.cs.vstest.reportsPaths=$TEST_RESULTS_PATH/tests.trx
           -Dsonar.cs.opencover.reportsPaths=$TEST_RESULTS_PATH/coverage.xml
