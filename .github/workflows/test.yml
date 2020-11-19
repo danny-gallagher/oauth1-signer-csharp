@@ -34,7 +34,7 @@ jobs:
     - name: Test
       run: |
         export PATH="$PATH:$HOME/.dotnet/tools"
-        echo ${{ matrix.TEST_PROJECT }}
         echo $TEST_PROJECT
-        dotnet test ${{ matrix.TEST_PROJECT }} -c Release -l:"trx;LogFileName=tests.trx" -r:"bin/" /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:CoverletOutput="bin/coverage.xml"
+        echo $TEST_PROJECT
+        dotnet test $TEST_PROJECT -c Release -l:"trx;LogFileName=tests.trx" -r:"bin/" /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:CoverletOutput="bin/coverage.xml"
         dotnet publish $TEST_PROJECT -c Release
