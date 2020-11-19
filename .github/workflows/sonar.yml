@@ -11,8 +11,6 @@ jobs:
     env:
       NETCORE2_TEST_PROJECT: Mastercard.Developer.OAuth1Signer.Tests/NetCore2/Mastercard.Developer.OAuth1Signer.Tests.NetCore2.csproj
       TEST_RESULTS_PATH: ./Mastercard.Developer.OAuth1Signer.Tests/NetCore2/bin
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     runs-on: ubuntu-latest
             
