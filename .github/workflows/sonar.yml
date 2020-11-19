@@ -17,10 +17,12 @@ jobs:
       with:
         dotnet-version: 2.1.700
     - name: Test
+      env:
+        NETCORE2_TEST_PROJECT: Mastercard.Developer.OAuth1Signer.Tests/NetCore2/Mastercard.Developer.OAuth1Signer.Tests.NetCore2.csproj
       run: |
         export PATH="$PATH:$HOME/.dotnet/tools"
-        dotnet test Mastercard.Developer.OAuth1Signer.Tests/NetCore2/Mastercard.Developer.OAuth1Signer.Tests.NetCore2.csproj -c Release -l:"trx;LogFileName=tests.trx" -r:"bin/" /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:CoverletOutput="bin/coverage.xml"
-        dotnet publish Mastercard.Developer.OAuth1Signer.Tests/NetCore2/Mastercard.Developer.OAuth1Signer.Tests.NetCore2.csproj -c Release
+        dotnet test $NETCORE2_TEST_PROJECT -c Release -l:"trx;LogFileName=tests.trx" -r:"bin/" /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:CoverletOutput="bin/coverage.xml"
+        dotnet publish $NETCORE2_TEST_PROJECT -c Release
         
     - name: Sonar
       uses: sonarsource/sonarcloud-github-action@master
