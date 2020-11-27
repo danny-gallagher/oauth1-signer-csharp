@@ -5,6 +5,8 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  schedule:
+    - cron: "0 16 * * *"
 
 jobs:
   build:
@@ -16,9 +18,10 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.1.700
+        java-version: '11'
     - name: Test
       env:
-        NETCORE2_TEST_PROJECT: Mastercard.Developer.OAuth1Signer.Tests/NetCore2/Mastercard.Developer.OAuth1Signer.Tests.NetCore2.csproj
+        NETCORE2_TEST_PROJECT: Mastercard.Developer.ClientEncryption.Tests/NetCore2/Mastercard.Developer.ClientEncryption.Tests.NetCore2.csproj
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
@@ -31,8 +34,8 @@ jobs:
           /o:"mastercard" \
           /d:sonar.host.url="https://sonarcloud.io" \
           /d:sonar.login="$SONAR_TOKEN" \
-          /d:sonar.cs.vstest.reportsPaths="./Mastercard.Developer.OAuth1Signer.Tests/NetCore2/bin/tests.trx" \
-          /d:sonar.cs.opencover.reportsPaths="./Mastercard.Developer.OAuth1Signer.Tests/NetCore2/bin/coverage.xml"
+          /d:sonar.cs.vstest.reportsPaths="./Mastercard.Developer.ClientEncryption.Tests/NetCore2/bin/tests.trx" \
+          /d:sonar.cs.opencover.reportsPaths="./Mastercard.Developer.ClientEncryption.Tests/NetCore2/bin/coverage.xml"
         
         dotnet test $NETCORE2_TEST_PROJECT -c Release -l:"trx;LogFileName=tests.trx" -r:"bin/" /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:CoverletOutput="bin/coverage.xml"
         dotnet publish $NETCORE2_TEST_PROJECT -c Release
